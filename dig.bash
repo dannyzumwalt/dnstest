@@ -7,6 +7,12 @@
 # - v1 - initial draft (10/08/2020)
 # - v2 - allows try and 1 retry values for each lookup, set timeout to default 5s (10/08/2020)
 
+# check for dig
+which dig >/dev/null
+if [[ $? -ne 0 ]]; then 
+  echo "dig tool not found. Is it installed? Exiting."
+fi
+
 dir=`dirname "$0"`
 
 # set # of digs per server to perform (default 1000)
