@@ -7,6 +7,8 @@
 # - v1 - initial draft (10/08/2020)
 # - v2 - allows try and 1 retry values for each lookup, set timeout to default 5s (10/08/2020)
 
+dir=`dirname "$0"`
+
 # set # of digs per server to perform (default 1000)
 lookups=1000
 
@@ -14,8 +16,8 @@ lookups=1000
 domain="time.com"
 
 #array of DNS servers to include in test - you should not need to edit this
-nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
-nameArray=(68.94.156.9 68.94.157.9)
+source ${dir}/nameservers.bash
+#nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
 
 # do not edit below this line 
 
