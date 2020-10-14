@@ -1,6 +1,12 @@
 # dnstest
 
-Perform dig lookups and measure performance in terms of number of connection timeouts. 
+Perform DNS lookups, using BIND DIG tool, and measure performance in terms of number of connection timeouts. 
+
+## prereqs
+
+Assumes running from bash environment (linux, macos, etc)
+BIND Dig must be installed (included in a typical linux/macos install).
+Checks for presense prior to running, 
 
 ## setup
 
