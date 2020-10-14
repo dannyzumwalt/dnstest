@@ -10,8 +10,10 @@ out="${dir}/results"
 
 of="${out}/digout.${ts}.txt"
 
+source ${dir}/nameservers.bash
 
 echo "outfile: $of"
+echo "Nameservers to test: ${nameArray[@]}"
 
 time $dir/dig.bash > $of 
 
