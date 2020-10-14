@@ -14,7 +14,9 @@ fi
  
 #array of DNS servers to include in test - you should not need to edit this
 nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
+nameArray=(68.94.156.9 68.94.157.9)
  
+date "+%Y-%m-%d %H:%M:%S %Z" 
 for name in ${nameArray[@]}; do
   cycles=`grep ">> @${name} " $file | wc -l`
   [[ $cycles -eq 0 ]] && exit 
