@@ -15,7 +15,7 @@ echo "outfile: $of"
 
 time $dir/dig.bash > $of 
 
-echo "test complete - `date "+%H:%M"`"
+echo "test cycle complete - `date "+%Y-%m-%d %H:%M:%S %Z"` "
 
 . $dir/results.bash "$of"
 
