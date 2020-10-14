@@ -1,4 +1,3 @@
-[dz1317@uvsaatsapp01 digDns]$ cat results.bash
 # get dns dig results and format.
  
 # dz1317@att.com
@@ -17,13 +16,11 @@ fi
 nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
  
 for name in ${nameArray[@]}; do
-  echo -n "$name - "
   cycles=`grep ">> @${name} " $file | wc -l`
-  [[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
+  [[ $cycles -eq 0 ]] && exit 
+  #[[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
   timeouts=`grep -B 3 "connection timed out" $file | grep $name | wc -l`
-  echo -n "$timeouts timeouts "
   p=`echo "scale=2; 100 * $timeouts / $cycles" | bc`
-  echo -n "(${p}% failure rate)"
-  echo " - [ $cycles cycles ]"
+  printf "%14s - %3d timeouts (%.2f%% failure rate) - [ %4d cycles ]\n" $name $timeouts $p $cycles
 done
  

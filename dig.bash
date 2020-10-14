@@ -8,7 +8,7 @@
 # - v2 - allows try and 1 retry values for each lookup, set timeout to default 5s (10/08/2020)
 
 # set # of digs per server to perform (default 1000)
-lookups=100
+lookups=1000
 
 #set domain you wish to lookup for this test. this domain is not accessed, just resolved by the dns server
 domain="time.com"
