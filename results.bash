@@ -25,6 +25,6 @@ for name in ${nameArray[@]}; do
   #[[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
   timeouts=`grep -B 3 "connection timed out" $file | grep $name | wc -l`
   p=`echo "scale=2; 100 * $timeouts / $cycles" | bc`
-  printf "%14s - %3d timeouts (%.2f%% failure rate) - [ %4d cycles ]\n" $name $timeouts $p $cycles
+  printf "%14s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles ]\n" $name $timeouts $p $cycles
 done
  
