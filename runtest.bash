@@ -7,18 +7,25 @@
 ts=`date "+%y%m%d-%H%M"`
 dir=`dirname "$0"`
 out="${dir}/results"
+scripts=${dir}/scripts
 
 of="${out}/digout.${ts}.txt"
 
-source ${dir}/nameservers.bash
+source $scripts/nameservers.bash
 
 echo "outfile: $of"
 echo "Nameservers to test: ${nameArray[@]}"
 
-time $dir/dig.bash > $of 
+time $scripts/dig.bash > $of 
 
 echo "test cycle complete - `date "+%Y-%m-%d %H:%M:%S %Z"` "
 
-. $dir/results.bash "$of"
+. $scripts/results.bash "$of"
+[[ $? -eq 0 ]] || exit
+
+#clean just query time and server name from output file
+filebase="${of%.*}"
+
+grep -A1 "Query time:" "$of" | tr '\n' ' ' | tr '-' '\n' | grep Query | sed 's/#/ /g' | awk '{print $4 "," $8}' > ${filebase}_cleaned.csv
 
 
