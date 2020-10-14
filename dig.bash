@@ -11,6 +11,7 @@
 which dig >/dev/null
 if [[ $? -ne 0 ]]; then 
   echo "dig tool not found. Is it installed? Exiting."
+  exit
 fi
 
 dir=`dirname "$0"`
