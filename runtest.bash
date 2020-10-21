@@ -8,17 +8,25 @@ ts=`date "+%y%m%d-%H%M"`
 dir=`dirname "$0"`
 out="${dir}/results"
 scripts=${dir}/scripts
-
+echo $scripts
 of="${out}/digout.${ts}.txt"
 
-source $scripts/nameservers.bash
+source $scripts/nameservers.bash &> /dev/null
+source $scripts/scripts/nameservers.bash &> /dev/null
 
 echo "outfile: $of"
 echo "Nameservers to test: ${nameArray[@]}"
 
-time $scripts/dig.bash > $of 
+. $scripts/dig.bash > $of 
 
-echo "test cycle complete - `date "+%Y-%m-%d %H:%M:%S %Z"` "
+# check progress
+complete=0
+while [ $complete -lt ${#nameArray[@]} ]; do
+  sleep 15 
+  complete=`grep "Lookups Complete" "$of" | wc -l`
+#  . $scripts/results.bash "$of" 
+#  echo "completed: [ $complete / ${#nameArray[@]} ]"
+done
 
 . $scripts/results.bash "$of"
 [[ $? -eq 0 ]] || exit
@@ -28,4 +36,6 @@ filebase="${of%.*}"
 
 grep -A1 "Query time:" "$of" | tr '\n' ' ' | tr '-' '\n' | grep Query | sed 's/#/ /g' | awk '{print $4 "," $8}' > ${filebase}_cleaned.csv
 
-
+echo "All test batches complete - `date "+%Y-%m-%d %H:%M:%S %Z"` "
+echo "Result file: $of"
+echo "Cleaned result file: ${filebase}_cleaned.csv"
