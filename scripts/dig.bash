@@ -30,6 +30,9 @@ source ${dir}/scripts/nameservers.bash &> /dev/null
 
 # do not edit below this line
 
+# print time
+date "%D %T"
+
 for name in ${nameArray[@]}; do
   i=0
   while [ $i -lt $lookups ]; do
