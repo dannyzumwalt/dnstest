@@ -24,8 +24,8 @@ complete=0
 while [ $complete -lt ${#nameArray[@]} ]; do
   sleep 15 
   complete=`grep "Lookups Complete" "$of" | wc -l`
-#  . $scripts/results.bash "$of" 
-#  echo "completed: [ $complete / ${#nameArray[@]} ]"
+  . $scripts/results.bash "$of" 
+  echo "completed: [ $complete / ${#nameArray[@]} ]"
 done
 
 . $scripts/results.bash "$of"

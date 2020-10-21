@@ -17,7 +17,7 @@ fi
 dir=`dirname "$0"`
 
 # set # of digs per server to perform (default 1000)
-lookups=20
+lookups=100
 
 #set domain you wish to lookup for this test. this domain is not accessed, just resolved by the dns server
 domain="time.com"
@@ -37,7 +37,7 @@ for name in ${nameArray[@]}; do
     [[ $cooldown -eq 0 ]] && echo "nameserver: $name, iteration: $i" && sleep 1
     let "i=i+1"
     #queryopts="+noanswer +retry=1"
-    queryopts="+noanswer +tries=1 +retry=0 +time=10"
+    queryopts="+noanswer +tries=1 +retry=0 +time=4"
     dig @$name -4 $domain $queryopts 
     [[ $i -eq $lookups ]] && echo "Lookups Complete for $name - `date`"
   done &
