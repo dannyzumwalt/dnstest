@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # use dig to test dns response times from various dns servers
 #
 # dz1317@att.com

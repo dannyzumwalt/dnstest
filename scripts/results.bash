@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # get dns dig results and format.
  
 # dz1317@att.com
