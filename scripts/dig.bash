@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # use dig to test dns response times from various dns servers
 #
 # dz1317@att.com
@@ -37,7 +37,7 @@ for name in ${nameArray[@]}; do
     [[ $cooldown -eq 0 ]] && echo "nameserver: $name, iteration: $i" && sleep 1
     let "i=i+1"
     #queryopts="+noanswer +retry=1"
-    queryopts="+noanswer +tries=1 +retry=0 +time=10"
+    queryopts="+noanswer +tries=1 +retry=0 +time=4"
     dig @$name -4 $domain $queryopts 
     [[ $i -eq $lookups ]] && echo "Lookups Complete for $name - `date`"
   done &

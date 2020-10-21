@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash 
 # 
 # wrapper to run the dig.bash script and save to a timestamped file
 # 10/14/2020
