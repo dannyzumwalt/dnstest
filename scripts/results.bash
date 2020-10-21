@@ -22,10 +22,9 @@ source ${dir}/scripts/nameservers.bash &> /dev/null
 #nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
  
 for name in ${nameArray[@]}; do
-  echo "look at results file $1"
   cycles=`grep "SERVER: ${name}" $file | wc -l`
-  #[[ $cycles -eq 0 ]] && exit 
-  [[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
+  [[ $cycles -eq 0 ]] && exit 
+  #[[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
   timeouts=`grep -B 3 "connection timed out" $file | grep $name | wc -l`
   p=`echo "scale=2; 100 * $timeouts / $cycles" | bc`
   printf "%14s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles ]\n" $name $timeouts $p $cycles
