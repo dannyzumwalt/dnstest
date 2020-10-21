@@ -10,6 +10,9 @@ out="${dir}/results"
 scripts=${dir}/scripts
 echo $scripts
 of="${out}/digout.${ts}.txt"
+progress=FALSE
+
+[[ $1 == "-v" ]] && progress=TRUE
 
 source $scripts/nameservers.bash &> /dev/null
 source $scripts/scripts/nameservers.bash &> /dev/null
@@ -24,8 +27,8 @@ complete=0
 while [ $complete -lt ${#nameArray[@]} ]; do
   sleep 15 
   complete=`grep "Lookups Complete" "$of" | wc -l`
-#  . $scripts/results.bash "$of" 
-#  echo "completed: [ $complete / ${#nameArray[@]} ]"
+  [[ $progress = "TRUE" ]] && . $scripts/results.bash "$of" 
+  [[ $progress = "TRUE" ]] && echo "completed: [ $complete / ${#nameArray[@]} ]"
 done
 
 . $scripts/results.bash "$of"

@@ -17,7 +17,7 @@ fi
 dir=`dirname "$0"`
 
 # set # of digs per server to perform (default 1000)
-lookups=20
+lookups=1000
 
 #set domain you wish to lookup for this test. this domain is not accessed, just resolved by the dns server
 domain="time.com"
