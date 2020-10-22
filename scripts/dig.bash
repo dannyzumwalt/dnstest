@@ -21,6 +21,7 @@ lookups=1000
 
 #set domain you wish to lookup for this test. this domain is not accessed, just resolved by the dns server
 domain="time.com"
+domain="localhost."
 
 #array of DNS servers to include in test - you should not need to edit this
 source ${dir}/scripts/nameservers.bash &> /dev/null
@@ -31,7 +32,7 @@ source ${dir}/scripts/nameservers.bash &> /dev/null
 # do not edit below this line
 
 # print time
-date "%D %T"
+date "+%D %T"
 
 for name in ${nameArray[@]}; do
   i=0
@@ -39,9 +40,8 @@ for name in ${nameArray[@]}; do
     cooldown=`expr $i % 20`
     [[ $cooldown -eq 0 ]] && echo "nameserver: $name, iteration: $i" && sleep 1
     let "i=i+1"
-    #queryopts="+noanswer +retry=1"
-    queryopts="+noanswer +tries=1 +retry=0 +time=4"
-    dig @$name -4 $domain $queryopts 
+    queryopts="+tries=1 +retry=0 +time=4"
+    dig @$name -4 $domain TXT $queryopts 
     [[ $i -eq $lookups ]] && echo "Lookups Complete for $name - `date`"
   done &
 done

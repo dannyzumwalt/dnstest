@@ -8,7 +8,7 @@ ts=`date "+%y%m%d-%H%M"`
 dir=`dirname "$0"`
 out="${dir}/results"
 scripts=${dir}/scripts
-echo $scripts
+
 of="${out}/digout.${ts}.txt"
 progress=FALSE
 
