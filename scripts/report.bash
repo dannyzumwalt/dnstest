@@ -25,6 +25,6 @@ for name in ${nameArray[@]}; do
   grep -v Nameservers $infile | grep $name | sed "s/  / /g" | sed "s/  / /g" | sed "s/(//g" | awk '{print $1,$2,$4,$6,$8}' | sed "s/ /,/g" >> $reportname 
 done
 
-grep -v Nameservers $infile | grep complete > testTimes.txt
-
+#grep -v Nameservers $infile | grep complete > testTimes.txt
+grep timeouts $infile | awk '{print $1,$2 }' | uniq > testTimes.txt
 echo done
