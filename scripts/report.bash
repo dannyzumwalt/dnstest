@@ -22,7 +22,7 @@ source ${dir}/scripts/nameservers.bash &> /dev/null
 
 for name in ${nameArray[@]}; do
   echo -n "." 
-  grep -v Nameservers $infile | grep $name | sed "s/  / /g" | sed "s/  / /g" | sed "s/(//g" | awk '{print $1,$2,$4,$6,$8}' | sed "s/ /,/g" >> $reportname 
+  grep -v Nameservers $infile | grep "$name " | sed "s/  / /g" | sed "s/  / /g" | sed "s/(//g" | awk '{print $1,$2,$4,$6,$8}' | sed "s/ /,/g" >> $reportname 
 done
 
 #grep -v Nameservers $infile | grep complete > testTimes.txt

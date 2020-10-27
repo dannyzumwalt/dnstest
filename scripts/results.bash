@@ -25,7 +25,7 @@ mytm=`date "+%T"`
 dt=`head -1 $file`
 
 for name in ${nameArray[@]}; do
-  cycles=`grep ">> @${name}" $file | wc -l`
+  cycles=`grep ">> @${name} " $file | wc -l`
   [[ $cycles -eq 0 ]] && exit 
   #[[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
   timeouts=`grep -B 3 "connection timed out" $file | grep $name | wc -l`
