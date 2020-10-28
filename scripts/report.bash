@@ -11,7 +11,7 @@ else
   exit
 fi
 dir=`dirname "$0"`
-reportname="testResults.${mydate}.csv"
+reportname="testResults.csv"
 echo > $reportname
 
 dt=`head -1 $infile`

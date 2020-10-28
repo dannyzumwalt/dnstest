@@ -19,7 +19,6 @@ fi
 source ${dir}/nameservers.bash &> /dev/null
 source ${dir}/scripts/nameservers.bash &> /dev/null
 
-#nameArray=(8.8.8.8 1.1.1.1 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8)
 mydt=`date "+%D"`
 mytm=`date "+%T"`
 dt=`head -1 $file`
