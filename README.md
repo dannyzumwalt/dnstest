@@ -24,10 +24,10 @@ After all lookup tests are done to each defined name server, the results.bash sc
 
 ## sample output
 ```
-$ ./runtest.bash
+$ ./runtest.bash [-v]
 outfile: ./results/digout.201014-1151.txt
 test cycle complete - 2020-10-14 11:59:23 CDT
-8.8.8.8 -   0 timeouts (0.00% failure rate) - [ 1000 cycles ]
+    8.8.8.8 -   0 timeouts (0.00% failure rate) - [ 1000 cycles ]
     1.1.1.1 -   0 timeouts (0.00% failure rate) - [ 1000 cycles ]
 68.94.156.9 -   3 timeouts (0.30% failure rate) - [ 1000 cycles ]
 68.94.157.9 -   0 timeouts (0.00% failure rate) - [ 1000 cycles ]
