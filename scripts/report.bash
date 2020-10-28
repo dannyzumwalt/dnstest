@@ -1,14 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 
 # report out to csv all results 
 # 
 mydate=`date +%Y%m%d`
 
-reportname="testResults.${mydate}.csv"
+if [ -s $1 ]; then
+  infile=$1
+else
+  echo "No filename given"
+  exit
+fi
+dir=`dirname "$0"`
+reportname="testResults.csv"
 echo > $reportname
 
-for name in 1.1.1.1 8.8.8.8 68.94.156.9 68.94.157.9 68.94.156.8 68.94.157.8; do
-  grep -v Nameservers ~/dnsTestingOutput-noRetry.log | grep $name | sed "s/  / /g" | sed "s/  / /g" | sed "s/(//g" | awk '{print $1,$3,$5}' | sed "s/ /,/g" >> $reportname 
-done
-grep -v Nameservers ~/dnsTestingOutput-noRetry.log | grep complete > testTimes.txt
+dt=`head -1 $infile`
 
+#array of DNS servers to include in test - you should not need to edit this
+source ${dir}/nameservers.bash &> /dev/null
+source ${dir}/scripts/nameservers.bash &> /dev/null
+
+for name in ${nameArray[@]}; do
+  echo -n "." 
+  grep -v Nameservers $infile | grep "$name " | sed "s/  / /g" | sed "s/  / /g" | sed "s/(//g" | awk '{print $1,$2,$4,$6,$8}' | sed "s/ /,/g" >> $reportname 
+done
+
+#grep -v Nameservers $infile | grep complete > testTimes.txt
+grep timeouts $infile | awk '{print $1,$2 }' | uniq > testTimes.txt
+echo done
