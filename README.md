@@ -1,6 +1,8 @@
 # dnstest
 
-Perform DNS lookups, using BIND DIG tool, and measure performance in terms of number of connection timeouts. 
+Perform repeated DNS lookups, using BIND DIG tool, and measure performance in terms of number of connection timeouts. 
+Runs dig in batches of 20 at a time, up to a set amount. The number of timeouts are recorded and reported back to the user.
+Additional scripts are included to format the output for csv for easier logging over time. 
 
 ## prereqs
 
