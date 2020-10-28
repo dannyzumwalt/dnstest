@@ -27,8 +27,9 @@ for name in ${nameArray[@]}; do
   cycles=`grep ">> @${name} " $file | wc -l`
   [[ $cycles -eq 0 ]] && exit 
   #[[ $cycles -eq 0 ]] && echo " ... no cycles found. Still running? " && exit
-  timeouts=`grep -B 3 "connection timed out" $file | grep $name | wc -l`
+  timeouts=`grep -B 3 "connection timed out" $file | grep "${name} " | wc -l`
   p=`echo "scale=2; 100 * $timeouts / $cycles" | bc`
-  printf "%17s - %13s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles ]\n" "$dt" $name $timeouts $p $cycles
+  ns=`grep -B3 "SERVER: ${name}#" $file | grep localhost | awk '{print $5}' | uniq -c | head -1`
+  printf "%17s - %13s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles %s ]\n" "$dt" $name $timeouts $p $cycles "- $ns"
 done
  

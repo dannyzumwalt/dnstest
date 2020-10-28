@@ -27,14 +27,14 @@ echo "Nameservers to test: ${nameArray[@]}"
 # check progress
 complete=0
 while [ $complete -lt ${#nameArray[@]} ]; do
-  sleep 10 
+  sleep 5
   complete=`grep "Lookups Complete" "$of" | wc -l`
   [[ $progress = "TRUE" ]] && clear && echo "outfile: $of" && echo "Nameservers to test: ${nameArray[@]}"
   [[ $progress = "TRUE" ]] && . $scripts/results.bash "$of" 
   [[ $progress = "TRUE" ]] && echo "completed: [ $complete / ${#nameArray[@]} ]"
 done
 
-  [[ $progress = "FALSE" ]] && . $scripts/results.bash "$of"
+[[ $progress = "FALSE" ]] && . $scripts/results.bash "$of"
 [[ $? -eq 0 ]] || exit
 
 #clean just query time and server name from output file
