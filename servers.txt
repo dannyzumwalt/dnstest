@@ -9,5 +9,5 @@ IP,Server
 68.94.157.11,SE-2
 68.94.156.10,N-1 (Cicero)
 68.94.157.10,N-2
-68.94.156.1,SW-1 (-Xerocole)
-68.94.157.1,SW-2 (-Xerocole)
+68.94.156.1,No Xerocole-1
+68.94.157.1,No Xerocole-2
