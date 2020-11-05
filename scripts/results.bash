@@ -30,6 +30,6 @@ for name in ${nameArray[@]}; do
   timeouts=`grep -B 3 "connection timed out" $file | grep "${name} " | wc -l`
   p=`echo "scale=2; 100 * $timeouts / $cycles" | bc`
   ns=`grep -B3 "SERVER: ${name}#" $file | grep localhost | awk '{print $5}' | uniq -c | head -1`
-  printf "%17s - %13s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles%s ]\n" "$dt" $name $timeouts $p $cycles "$ns"
+  printf "%17s - %13s - %3d timeouts (%.2f%% timeout rate) - [ %4d cycles %s ]\n" "$dt" $name $timeouts $p $cycles "$ns"
 done
  
